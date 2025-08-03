@@ -1,4 +1,4 @@
-package requests;
+package api.requests;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import static utils.Config.*;

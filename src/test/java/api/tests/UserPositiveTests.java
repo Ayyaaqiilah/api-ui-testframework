@@ -1,8 +1,8 @@
-package tests;
+package api.tests;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import requests.UserRequests;
+import api.requests.UserRequests;
 
 public class UserPositiveTests {
 

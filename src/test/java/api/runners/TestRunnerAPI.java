@@ -1,9 +1,9 @@
-package runners;
+package api.runners;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import tests.UserPositiveTests;
-import tests.UserNegativeTests;
+import api.tests.UserPositiveTests;
+import api.tests.UserNegativeTests;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({

@@ -1,4 +1,4 @@
-package steps;
+package web.steps;
 
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
