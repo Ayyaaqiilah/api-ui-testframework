@@ -23,14 +23,18 @@ jobs:
       - name: Give permission to Gradle wrapper
         run: chmod +x ./gradlew
 
-      - name: Run Tests with Gradle
+      - name: Run API Tests (Gradle test)
         run: ./gradlew test
+
+      - name: Run UI Tests (Cucumber)
+        run: ./gradlew runCucumber
+
       - name: Upload HTML Report (Cucumber)
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-html-report
-          path: build/reports/cucumber-html-report.html
+          path: build/reports/cucumber-html-report/
 
       - name: Upload Full Test Reports
         if: always()
