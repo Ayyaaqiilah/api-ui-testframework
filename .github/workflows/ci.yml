@@ -25,3 +25,19 @@ jobs:
 
       - name: Run Tests with Gradle
         run: ./gradlew test
+        
+      - name: Upload HTML Report (Cucumber)
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cucumber-html-report
+          path: build/reports/cucumber-report.html
+
+      - name: Upload Full Test Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: full-test-reports
+          path: |
+            build/reports/
+            build/test-results/
