@@ -53,6 +53,12 @@ test {
 // =============================
 task runCucumber(type: Test) {
     useJUnit()
+
+    // Gunakan semua test class (bukan hanya TestRunnerUI.class)
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+
+    // Optional: filter hanya UI test runner
     include '**/TestRunnerUI.class'
 
     testLogging {
@@ -61,6 +67,7 @@ task runCucumber(type: Test) {
 
     reports {
         html.required.set(true)
+        html.outputLocation.set(file("$buildDir/reports/tests/runCucumber"))
         junitXml.required.set(true)
     }
 }
