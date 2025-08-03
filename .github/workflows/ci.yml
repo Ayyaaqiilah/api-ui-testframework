@@ -30,7 +30,7 @@ jobs:
         run: ./gradlew runCucumber
 
       - name: List generated test reports
-        run: ls -R build/reports/tests/runCucumber
+        run: ls -R build/reports/cucumber-html-report
 
       - name: Upload HTML Report (Cucumber)
         if: always()
