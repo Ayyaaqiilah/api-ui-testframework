@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-html-report
-          path: build/reports/cucumber-html-report/
+          path: build/reports/tests/runCucumber/index.html
 
       - name: Upload Full Test Reports
         if: always()
