@@ -29,6 +29,9 @@ jobs:
       - name: Run UI Tests (Cucumber)
         run: ./gradlew runCucumber
 
+      - name: List generated test reports
+        run: ls -R build/reports/tests/runCucumber
+
       - name: Upload HTML Report (Cucumber)
         if: always()
         uses: actions/upload-artifact@v4
