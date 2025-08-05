@@ -32,13 +32,15 @@ jobs:
       - name: List ALL test reports
         run: find build/reports -type f
 
+      - name: Run Cucumber Tests
+        run: ./gradlew runCucumber
+
       - name: Upload Cucumber HTML Report (if exists)
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-html-report
-          path: build/reports/tests/cucumber-report.html
-
+          path: build/reports/cucumber-report.html
 
       - name: Upload Full Test Reports
         if: always()
