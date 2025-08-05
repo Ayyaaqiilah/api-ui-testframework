@@ -1,10 +1,13 @@
 package web.steps;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pages.LoginPage;
+import org.openqa.selenium.chrome.ChromeOptions;
+
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
@@ -12,13 +15,24 @@ public class LoginSteps {
     WebDriver driver;
     LoginPage loginPage;
 
-    @Given("user is on the login page")
-    public void user_is_on_the_login_page() {
+    @Before
+    public void setUp() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new"); // atau "--headless" jika error
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--remote-allow-origins=*");
+
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
-        loginPage.open();
+    }
+
+    @Given("user is on the login page")
+    public void user_is_on_the_login_page() {
+        loginPage.open(); // Tidak perlu buat driver baru lagi di sini
     }
 
     @When("user enters username {string} and password {string}")

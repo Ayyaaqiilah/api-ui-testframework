@@ -29,15 +29,15 @@ jobs:
       - name: Run UI Tests (Cucumber)
         run: ./gradlew runCucumber
 
-      - name: List generated test reports
-        run: ls -R build/reports/cucumber-html-report
+      - name: List ALL test reports
+        run: find build/reports -type f
 
-      - name: Upload HTML Report (Cucumber)
+      - name: Upload Cucumber HTML Report (if exists)
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-html-report
-          path: build/reports/cucumber-html-report/index.html
+          path: build/reports/cucumber-html-report/
 
       - name: Upload Full Test Reports
         if: always()
@@ -47,3 +47,8 @@ jobs:
           path: |
             build/reports/
             build/test-results/
+
+      - name: Show test results
+        if: always()
+        run: cat build/reports/tests/runCucumber/index.html || echo "Report not found"
+

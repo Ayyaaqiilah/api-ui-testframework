@@ -14,7 +14,7 @@ dependencies {
     // UI Testing
     // ========================
     implementation 'org.seleniumhq.selenium:selenium-java:4.5.3'
-    implementation 'io.github.bonigarcia:webdrivermanager:5.9.2'
+    implementation 'io.github.bonigarcia:webdrivermanager:5.8.0'
     implementation 'org.seleniumhq.selenium:selenium-devtools-v104:4.5.3'
 
     // Cucumber + JUnit 4
@@ -37,7 +37,7 @@ dependencies {
 }
 
 test {
-    // Ini untuk API test (pakai TestNG)
+    // Untuk TestNG (API)
     useTestNG()
     testLogging {
         events "passed", "skipped", "failed"
@@ -48,26 +48,15 @@ test {
     }
 }
 
-// =============================
-// TASK KHUSUS: Jalankan UI Test
-// =============================
 task runCucumber(type: Test) {
-    useJUnit()
+    useJUnit()  // tambahkan ini
 
-    // Gunakan semua test class (bukan hanya TestRunnerUI.class)
-    testClassesDirs = sourceSets.test.output.classesDirs
-    classpath = sourceSets.test.runtimeClasspath
-
-    // Optional: filter hanya UI test runner
-    include '**/TestRunnerUI.class'
+    include '**/TestRunnerUI.class'  // pastikan path class benar
 
     testLogging {
         events "passed", "skipped", "failed"
     }
 
-    reports {
-        html.required.set(true)
-        html.outputLocation.set(file("$buildDir/reports/tests/runCucumber"))
-        junitXml.required.set(true)
-    }
+    systemProperty "cucumber.plugin", "pretty, html:build/reports/cucumber-report.html, json:build/reports/cucumber-report.json"
 }
+
